@@ -1,6 +1,6 @@
 services:  
   - type: web  
-  name: pilotageter  
+  name: pilotage  
   env: python  
   buildCommand: ""  
-  startCommand: "python pilotageter.py" 
+  startCommand: "python prof32.py" 
