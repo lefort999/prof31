@@ -1,66 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Recherche Généalogique</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            padding: 20px;
-            max-width: 800px;
-            margin: auto;
-        }
-        h1 {
-            font-size: 22px;
-            color: #2c3e50;
-        }
-        form {
-            margin-top: 20px;
-        }
-        select, button {
-            padding: 10px;
-            width: 100%;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            margin-top: 10px;
-        }
-        button {
-            background-color: #2980b9;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #3498db;
-        }
-        .message {
-            margin-top: 30px;
-            font-size: 14px;
-            background-color: #fff;
-            padding: 15px;
-            border-radius: 5px;
-            white-space: pre-wrap;
-        }
-    </style>
-</head>
-<body>
-    <h1>Choisissez une rubrique pour votre recherche généalogique :</h1>
+<form method="post" action="/">
+    <label for="rubrique">Rubrique :</label>
+    <select name="rubrique">
+        <option value="" disabled selected>Choisissez une rubrique</option>
+        {% for rubrique in rubriques %}
+            <option value="{{ rubrique }}">{{ rubrique.capitalize() }}</option>
+        {% endfor %}
+    </select>
 
-    <form method="post" action="/">
-        <label for="profession">Rubrique :</label>
-        <select name="profession">
-            <option value="" disabled selected>Choisissez une rubrique</option>
-            {% for prof in professions %}
-                <option value="{{ prof }}">{{ prof.capitalize() }}</option>
-            {% endfor %}
-        </select>
+    <label for="profession">Profession :</label>
+    <select name="profession">
+        <option value="" disabled selected>Choisissez une profession</option>
+        {% for prof in professions %}
+            <option value="{{ prof }}">{{ prof.capitalize() }}</option>
+        {% endfor %}
+    </select>
 
-        <button type="submit">Afficher</button>
-    </form>
+    <button type="submit">Afficher</button>
+</form>
 
-    {% if message %}
-    <div class="message">{{ message }}</div>
-    {% endif %}
-</body>
-</html>
+{% if message %}
+<div class="message">{{ message }}</div>
+{% endif %}
