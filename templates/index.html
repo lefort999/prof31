@@ -8,22 +8,15 @@
             background-color: #f4f4f4;
             color: #333;
             padding: 20px;
-            max-width: 900px;
+            max-width: 800px;
             margin: auto;
         }
         h1 {
-            font-size: 20px;
+            font-size: 22px;
             color: #2c3e50;
         }
         form {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
             margin-top: 20px;
-        }
-        .form-group {
-            flex: 1;
-            min-width: 250px;
         }
         select, button {
             padding: 10px;
@@ -55,36 +48,15 @@
     <h1>Choisissez une rubrique pour votre recherche généalogique :</h1>
 
     <form method="post" action="/">
-        <div class="form-group">
-            <label for="profession">Rubrique générale :</label>
-            <select name="profession">
-                {% for prof in professions %}
-                    <option value="{{ prof }}">{{ prof.capitalize() }}</option>
-                {% endfor %}
-            </select>
-        </div>
+        <label for="profession">Rubrique :</label>
+        <select name="profession">
+            <option value="" disabled selected>Choisissez une rubrique</option>
+            {% for prof in professions %}
+                <option value="{{ prof }}">{{ prof.capitalize() }}</option>
+            {% endfor %}
+        </select>
 
-        <div class="form-group">
-            <label for="prof_spec">Profession spécifique :</label>
-            <select name="prof_spec">
-                {% for spec in profs_spec %}
-                    <option value="{{ spec }}">{{ spec.capitalize() }}</option>
-                {% endfor %}
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="cause_deces">Cause de décès :</label>
-            <select name="cause_deces">
-                {% for cause in causes %}
-                    <option value="{{ cause }}">{{ cause.capitalize() }}</option>
-                {% endfor %}
-            </select>
-        </div>
-
-        <div class="form-group" style="align-self: flex-end;">
-            <button type="submit">Afficher</button>
-        </div>
+        <button type="submit">Afficher</button>
     </form>
 
     {% if message %}
