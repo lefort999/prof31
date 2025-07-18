@@ -6,7 +6,7 @@ app = Flask(__name__)
 # 🔹 Rubriques générales
 RUBRIQUES = {
     "militaire": "militaire.txt",
-    "croccrac": "croccrac.txt",
+    "x": "x.txt",
     "enigme": "enigme.txt",
     "fisc": "fisc.txt",
     "cadastre": "cadastre.txt",
@@ -45,7 +45,7 @@ def recherche():
         profession = request.form.get("profession")
 
         if rubrique in RUBRIQUES:
-            message += f"📁 Rubrique sélectionnée chanvrier : {rubrique.capitalize()}\n"
+            message += f"📁 Rubrique sélectionnée : {rubrique.capitalize()}\n"
             message += lire_texte(RUBRIQUES[rubrique]) + "\n"
 
         if profession in PROFESSIONS:
