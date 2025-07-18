@@ -8,7 +8,7 @@
             background-color: #f4f4f4;
             color: #333;
             padding: 20px;
-            max-width: 600px;
+            max-width: 900px;
             margin: auto;
         }
         h1 {
@@ -16,14 +16,21 @@
             color: #2c3e50;
         }
         form {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
             margin-top: 20px;
+        }
+        .form-group {
+            flex: 1;
+            min-width: 250px;
         }
         select, button {
             padding: 10px;
-            margin-top: 10px;
             width: 100%;
             border-radius: 5px;
             border: 1px solid #ccc;
+            margin-top: 10px;
         }
         button {
             background-color: #2980b9;
@@ -35,10 +42,10 @@
             background-color: #3498db;
         }
         .message {
-            margin-top: 20px;
+            margin-top: 30px;
             font-size: 14px;
             background-color: #fff;
-            padding: 10px;
+            padding: 15px;
             border-radius: 5px;
             white-space: pre-wrap;
         }
@@ -46,13 +53,38 @@
 </head>
 <body>
     <h1>Choisissez une rubrique pour votre recherche généalogique :</h1>
-    <form method="post" action="/profession">
-        <select name="profession">
-            {% for prof in professions %}
-                <option value="{{ prof }}">{{ prof.capitalize() }}</option>
-            {% endfor %}
-        </select>
-        <button type="submit">Afficher</button>
+
+    <form method="post" action="/">
+        <div class="form-group">
+            <label for="profession">Rubrique générale :</label>
+            <select name="profession">
+                {% for prof in professions %}
+                    <option value="{{ prof }}">{{ prof.capitalize() }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="prof_spec">Profession spécifique :</label>
+            <select name="prof_spec">
+                {% for spec in profs_spec %}
+                    <option value="{{ spec }}">{{ spec.capitalize() }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="cause_deces">Cause de décès :</label>
+            <select name="cause_deces">
+                {% for cause in causes %}
+                    <option value="{{ cause }}">{{ cause.capitalize() }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group" style="align-self: flex-end;">
+            <button type="submit">Afficher</button>
+        </div>
     </form>
 
     {% if message %}
