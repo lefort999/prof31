@@ -19,6 +19,7 @@ PROFESSIONS = {
     "douanier": "douanier.txt",
     "fonctionnaire": "fonctionnaire.txt",
     "soldat": "soldat.txt"
+     "militaire": "militaire.txt",
 }
 
 # 🔹 Lecture et nettoyage des fichiers texte
