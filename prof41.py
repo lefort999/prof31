@@ -11,7 +11,7 @@ RUBRIQUES = {
     "cadastre": "cadastre.txt",
     "police": "police.txt",
     "region": "region.txt",
-    "riendutout": "riendutout.txt",
+    "rienderien": "rienderien.txt",
     "notaire": "notaire.txt"
 }
 
