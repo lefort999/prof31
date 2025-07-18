@@ -10,6 +10,7 @@ RUBRIQUES = {
     "fisc": "fisc.txt",
     "cadastre": "cadastre.txt",
     "police": "police.txt",
+    "region": "region.txt",
     "notaire": "notaire.txt"
 }
 
