@@ -6,6 +6,7 @@ app = Flask(__name__)
 # 🔹 Rubriques générales
 RUBRIQUES = {
     "militaire": "militaire.txt",
+    "chanvrier": "chanvrier.txt",
     "fisc": "fisc.txt",
     "cadastre": "cadastre.txt",
     "police": "police.txt",
