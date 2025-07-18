@@ -3,13 +3,22 @@ from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
-# 🔹 Rubriques générales (liées à des fichiers texte)
-PROFESSIONS = {
+# 🔹 Rubriques générales
+RUBRIQUES = {
     "militaire": "militaire.txt",
     "fisc": "fisc.txt",
     "cadastre": "cadastre.txt",
     "police": "police.txt",
     "notaire": "notaire.txt"
+}
+
+# 🔹 Professions spécifiques
+PROFESSIONS = {
+    "chanvrier": "chanvrier.txt",
+    "chapelier": "chapelier.txt",
+    "douanier": "douanier.txt",
+    "fonctionnaire": "fonctionnaire.txt",
+    "soldat": "soldat.txt"
 }
 
 # 🔹 Lecture et nettoyage des fichiers texte
@@ -28,12 +37,20 @@ def lire_texte(nom_fichier):
 def recherche():
     message = ""
     if request.method == "POST":
+        rubrique = request.form.get("rubrique")
         profession = request.form.get("profession")
+
+        if rubrique in RUBRIQUES:
+            message += f"📁 Rubrique sélectionnée : {rubrique.capitalize()}\n"
+            message += lire_texte(RUBRIQUES[rubrique]) + "\n"
+
         if profession in PROFESSIONS:
-            message = lire_texte(PROFESSIONS[profession])
+            message += f"\n👤 Profession sélectionnée : {profession.capitalize()}\n"
+            message += lire_texte(PROFESSIONS[profession])
 
     return render_template("index.html",
                            message=message,
+                           rubriques=RUBRIQUES.keys(),
                            professions=PROFESSIONS.keys())
 
 # 🔹 Lancement du serveur
