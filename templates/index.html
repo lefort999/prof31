@@ -1,89 +1,63 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>🔎 Généalogie – Moteur à Deux Listes</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            padding: 40px;
-            color: #2c3e50;
-            text-align: center;
-        }
+import os
+from flask import Flask, request, render_template
 
-        form {
-            background-color: #fff;
-            padding: 25px;
-            margin-top: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            display: inline-block;
-            text-align: left;
-        }
+app = Flask(__name__)
 
-        label {
-            display: block;
-            margin-top: 15px;
-            font-weight: bold;
-        }
+# 🔹 Rubriques générales
+RUBRIQUES = {
+    "militaire": "militaire.txt",
+    "x": "x.txt",
+    "enigme": "enigme.txt",
+    "fisc": "fisc.txt",
+    "cadastre": "cadastre.txt",
+    "police": "police.txt",
+    "region": "region.txt",
+    "notaire": "notaire.txt"
+}
 
-        select, button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
+# 🔹 Professions spécifiques
+PROFESSIONS = {
+    "chanvrier": "chanvrier.txt",
+    "chapelier": "chapelier.txt",
+    "douanier": "douanier.txt",
+    "fonctionnaire": "fonctionnaire.txt",
+    "soldat": "soldat.txt",
+    "militaire": "militaire.txt"
+}
 
-        button {
-            background-color: #2980b9;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
+# 🔹 Lecture et nettoyage des fichiers texte
+def lire_texte(nom_fichier):
+    try:
+        with open(nom_fichier, "r", encoding="utf-8") as fichier:
+            lignes = fichier.read().splitlines()
+            lignes_filtrees = [ligne for ligne in lignes if not ligne.isupper()]
+            lignes_nettoyees = lignes_filtrees[3:-2] if len(lignes_filtrees) > 5 else []
+            return "\n".join(lignes_nettoyees)
+    except FileNotFoundError:
+        return "Information non disponible."
 
-        .message {
-            margin-top: 30px;
-            background-color: #eaf2f8;
-            border: 2px solid #2980b9;
-            padding: 20px;
-            border-radius: 10px;
-            font-family: monospace;
-            white-space: pre-wrap;
-            text-align: left;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-    </style>
-</head>
-<body>
-    <h1>🔎 Généalogie – Moteur à Deux Listes</h1>
+# 🔹 Route principale
+@app.route("/", methods=["GET", "POST"])
+def recherche():
+    message = ""
+    if request.method == "POST":
+        rubrique = request.form.get("rubrique")
+        profession = request.form.get("profession")
 
-    <form method="post" action="/">
-        <label for="rubrique">Rubrique :</label>
-        <select name="rubrique" required>
-            <option value="" disabled selected>Choisissez une rubrique</option>
-            {% for rubrique in rubriques %}
-                <option value="{{ rubrique }}">{{ rubrique.capitalize() }}</option>
-            {% endfor %}
-        </select>
+        if rubrique in RUBRIQUES:
+            message += f"📁 Rubrique sélectionnée : {rubrique.capitalize()}\n"
+            message += lire_texte(RUBRIQUES[rubrique]) + "\n"
 
-        <label for="profession">Profession :</label>
-        <select name="profession" required>
-            <option value="" disabled selected>Choisissez une profession</option>
-            {% for prof in professions %}
-                <option value="{{ prof }}">{{ prof.capitalize() }}</option>
-            {% endfor %}
-        </select>
+        if profession in PROFESSIONS:
+            message += f"\n👤 Profession sélectionnée : {profession.capitalize()}\n"
+            message += lire_texte(PROFESSIONS[profession])
 
-        <button type="submit">Afficher</button>
-    </form>
+    return render_template("index.html",
+                           message=message,
+                           rubriques=RUBRIQUES.keys(),
+                           professions=PROFESSIONS.keys())
 
-    {% if message %}
-    <div class="message">{{ message }}</div>
-    {% endif %}
-</body>
-</html>
+# 🔹 Lancement du serveur
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
