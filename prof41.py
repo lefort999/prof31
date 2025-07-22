@@ -24,7 +24,7 @@ PROFESSIONS = {
     "soldat": "soldat.txt",
     "militaire": "militaire.txt"
 }
-# 🔹 Rubriques caracteristique
+# 🔹 Rubriques critere
 RUBRIQUES = {
     "y": "y.txt",
    
