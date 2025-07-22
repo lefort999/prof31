@@ -26,7 +26,6 @@ PROFESSIONS = {
 }
 # 🔹 Rubriques critere
 RUBRIQUES = {
-     
     "notaire": "z.txt",
     "banque": "banque.txt"
 }
