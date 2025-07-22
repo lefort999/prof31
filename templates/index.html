@@ -1,23 +1,99 @@
-<form method="post" action="/">
-    <label for="rubrique">Rubrique :</label>
-    <select name="rubrique">
-        <option value="" disabled selected>Choisissez une rubrique</option>
-        {% for rubrique in rubriques %}
-            <option value="{{ rubrique }}">{{ rubrique.capitalize() }}</option>
-        {% endfor %}
-    </select>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>🔎 Généalogie – Moteur Unifié</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 40px;
+            color: #2c3e50;
+            text-align: center;
+        }
 
-    <label for="profession">Profession :</label>
-    <select name="profession">
-        <option value="" disabled selected>Choisissez une profession</option>
-        {% for prof in professions %}
-            <option value="{{ prof }}">{{ prof.capitalize() }}</option>
-        {% endfor %}
-    </select>
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            color: #2980b9;
+        }
 
-    <button type="submit">Afficher</button>
-</form>
+        form {
+            background-color: #fff;
+            padding: 25px;
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            display: inline-block;
+            text-align: left;
+        }
 
-{% if message %}
-<div class="message">{{ message }}</div>
-{% endif %}
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #fdfdfd;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px;
+            width: 100%;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .message {
+            margin-top: 30px;
+            background-color: #eaf2f8;
+            border: 2px solid #2980b9;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            text-align: left;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔎 Généalogie – Moteur Unifié</h1>
+    
+    <form method="post" action="/">
+        <label for="rubrique">Rubrique :</label>
+        <select name="rubrique" required>
+            <option value="" disabled selected>Choisissez une rubrique</option>
+            {% for rubrique in rubriques %}
+                <option value="{{ rubrique }}">{{ rubrique.capitalize() }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="profession">Profession :</label>
+        <select name="profession" required>
+            <option value="" disabled selected>Choisissez une profession</option>
+            {% for prof in professions %}
+                <option value="{{ prof }}">{{ prof.capitalize() }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Afficher</button>
+    </form>
+
+    {% if message %}
+    <div class="message">{{ message }}</div>
+    {% endif %}
+</body>
+</html>
