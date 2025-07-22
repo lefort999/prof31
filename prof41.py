@@ -60,7 +60,7 @@ def recherche():
             
         if caracteristique in CARACTERISTIQUE:
             message += f"\n👤 caracteristique sélectionnée : {profession.capitalize()}\n"
-            message += lire_texte(CARACTERISTIQUE[caracrztistique])
+            message += lire_texte(CARACTERISTIQUE[caracteristique])
     return render_template("index.html",
                            message=message,
                            rubriques=RUBRIQUES.keys(),
