@@ -49,7 +49,7 @@ def recherche():
     if request.method == "POST":
         rubrique = request.form.get("rubrique")
         profession = request.form.get("profession")
-        caracteristique = request.form.get("caracteristique")  # ✅ ajout nécessaire
+        caracteristique = request.form.get("caracteristique")
 
         if rubrique in RUBRIQUES:
             message += f"📁 Rubrique sélectionnée : {rubrique.capitalize()}\n"
