@@ -65,7 +65,7 @@ def recherche():
                            message=message,
                            rubriques=RUBRIQUES.keys(),
                            professions=PROFESSIONS.keys())
-                           caracteristique=CARACTERISTIQUE.keys())
+                           caracteristique=CARACTERISTIQUE.keys()
 # 🔹 Lancement du serveur
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
