@@ -25,7 +25,7 @@ PROFESSIONS = {
     "militaire": "militaire.txt"
 }
 # 🔹 Rubriques critere
-RUBRIQUES = {
+caracteristique = {
     "notaire": "z.txt",
     "banque": "banque.txt"
 }
