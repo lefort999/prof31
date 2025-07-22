@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 # 🔹 Rubriques générales
 RUBRIQUES = {
-    "y": "y.txt",
+    "militaire": "militaire.txt",
     "x": "x.txt",
     "enigme": "enigme.txt",
     "fisc": "fisc.txt",
@@ -23,11 +23,6 @@ PROFESSIONS = {
     "fonctionnaire": "fonctionnaire.txt",
     "soldat": "soldat.txt",
     "militaire": "militaire.txt"
-}
-# 🔹 Rubriques critere
-RUBRIQUES = {
-    "notaire": "z.txt",
-    "banque": "banque.txt"
 }
 
 # 🔹 Lecture et nettoyage des fichiers texte
@@ -56,15 +51,12 @@ def recherche():
         if profession in PROFESSIONS:
             message += f"\n👤 Profession sélectionnée : {profession.capitalize()}\n"
             message += lire_texte(PROFESSIONS[profession])
-            
-        if caracteristique in CARACTERISTIQUE:
-            message += f"\n👤 caracteristique sélectionnée : {profession.capitalize()}\n"
-            message += lire_texte(CARACTERISTIQUE[caracteristique])
+
     return render_template("index.html",
                            message=message,
                            rubriques=RUBRIQUES.keys(),
-                           professions=PROFESSIONS.keys(),
-                           caracteristique=CARACTERISTIQUE.keys())
+                           professions=PROFESSIONS.keys())
+
 # 🔹 Lancement du serveur
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
