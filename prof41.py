@@ -24,6 +24,13 @@ PROFESSIONS = {
     "soldat": "soldat.txt",
     "militaire": "militaire.txt"
 }
+# 🔹 Rubriques caracteristique
+RUBRIQUES = {
+    "y": "y.txt",
+   
+    "notaire": "notaire.txt",
+    "banque": "banque.txt"
+}
 
 # 🔹 Lecture et nettoyage des fichiers texte
 def lire_texte(nom_fichier):
