@@ -64,7 +64,7 @@ def recherche():
     return render_template("index.html",
                            message=message,
                            rubriques=RUBRIQUES.keys(),
-                           professions=PROFESSIONS.keys())
+                           professions=PROFESSIONS.keys(),
                            caracteristique=CARACTERISTIQUE.keys()
 # 🔹 Lancement du serveur
 if __name__ == "__main__":
