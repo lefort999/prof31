@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Moteur Généalogique</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            padding: 30px;
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            min-width: 320px;
+            flex: 1;
+            max-width: 500px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        .checkboxes label {
+            font-weight: normal;
+            display: block;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .scroll-zone {
+            max-height: 300px;
+            overflow-y: auto;
+            background-color: #fdfdfd;
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: left;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔎 Moteur Généalogique Unifié</h1>
+
+    <div class="container">
+        <!-- Analyse Généalogique -->
+        <form method="post" action="/analyse">
+           <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+    <label for="profession" style="min-width: 140px;">Profession :</label>
+    <input type="text" id="profession" name="profession" placeholder="ex: Douanier" style="flex: 1;">
+</div>
+
+<div style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+    <label for="naissance" style="min-width: 140px;">Année de naissance :</label>
+    <input type="number" id="naissance" name="naissance" placeholder="ex: 1882" style="flex: 1;">
+</div>
+
+<div style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+    <label for="mariage" style="min-width: 140px;">Année de mariage :</label>
+    <input type="number" id="mariage" name="mariage" placeholder="ex: 1910" style="flex: 1;">
+</div>
+
+<div style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+    <label for="deces" style="min-width: 140px;">Année de décès :</label>
+    <input type="number" id="deces" name="deces" placeholder="ex: 1954" style="flex: 1;">
+</div>
+
+<!-- 🔍 Lieux et codes postaux -->
+
+<div style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+    <label for="lieu_naissance" style="min-width: 140px;">Lieu de naissance :</label>
+    <input type="text" id="lieu_naissance" name="lieu_naissance" placeholder="ex: Massy" style="flex: 1;">
+</div>
+
+<div style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+    <label for="cp_naissance" style="min-width: 140px;">CP naissance :</label>
+    <input type="text" id="cp_naissance" name="cp_naissance" placeholder="ex: 91300" style="flex: 1;">
+</div>
+
+<div style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+    <label for="lieu_mariage" style="min-width: 140px;">Lieu de mariage :</label>
+    <input type="text" id="lieu_mariage" name="lieu_mariage" placeholder="ex: Versailles" style="flex: 1;">
+</div>
+
+<div style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+    <label for="cp_mariage" style="min-width: 140px;">CP mariage :</label>
+    <input type="text" id="cp_mariage" name="cp_mariage" placeholder="ex: 78000" style="flex: 1;">
+</div>
+
+<div style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+    <label for="lieu_deces" style="min-width: 140px;">Lieu de décès :</label>
+    <input type="text" id="lieu_deces" name="lieu_deces" placeholder="ex: Paris" style="flex: 1;">
+</div>
+
+<div style="display: flex; align-items: center; gap: 15px; margin-bottom: 12px;">
+    <label for="cp_deces" style="min-width: 140px;">CP décès :</label>
+    <input type="text" id="cp_deces" name="cp_deces" placeholder="ex: 75000" style="flex: 1;">
+</div>
+
+<div style="display: flex; align-items: center; gap: 15px; margin-top: 20px; margin-bottom: 12px;">
+    <label for="caracteristiques" style="min-width: 140px;">Caractéristiques :</label>
+    <select id="caracteristiques" name="caracteristiques" multiple size="5" style="flex: 1; padding:8px; border-radius:5px; border:1px solid #ccc; background-color:#fff;">
+        <option value="militaire">Militaire</option>
+        <option value="blesse">Blesse</option>
+        <option value="officier">Officier</option>
+        <option value="celibataire">Célibataire</option>
+        <option value="etatcivil">Acte d'état civil complet</option>
+    </select>
+</div>
+           <!-- 🔽 Liste déroulante de professions documentables -->
+<div style="display: flex; align-items: center; gap: 15px; margin-top: 20px; margin-bottom: 12px;">
+    <label for="documentation" style="min-width: 140px;">Professions à documenter :</label>
+    <select id="documentation" name="documentation" multiple size="5" style="flex: 1; padding:8px; border-radius:5px; border:1px solid #ccc; background-color:#fff;">
+        <option value="militaire">Militaire</option>
+        <option value="fisc">Fisc</option>
+        <option value="cadastre">Cadastre</option>
+        <option value="police">Police</option>
+        <option value="notaire">Notaire</option>
+        <option value="administration">Administration</option>
+        <option value="enigme">Énigme</option>
+    </select>
+</div>
+<small style="color:#555;">💡 Astuce : utilisez Ctrl (Cmd sur Mac) pour sélection multiple</small>
+
+            <button type="submit">Analyser</button>
+
+            <!-- Partie à interpréter par un moteur de template -->
+            <!-- Exemple : Flask / Django -->
+            {% if message %}
+            <div class="scroll-zone">{{ message|safe }}</div>
+            {% endif %}
+        </form>
+
+        <!-- Lecture de rubrique -->
+        <form method="post" action="/profession">
+            <h2>Lecture de rubrique</h2>
+            <label for="lecture">Rubrique à afficher :</label>
+<select name="lecture" id="lecture" required style="padding:8px; border-radius:5px; border:1px solid #ccc; background-color:#fff;">
+    <option value="">-- Choisir une rubrique --</option>
+    <option value="militaire">Militaire</option>
+    <option value="fisc">Fisc</option>
+    <option value="cadastre">Cadastre</option>
+    <option value="police">Police</option>
+    <option value="notaire">Notaire</option>
+    <option value="administration">Administration</option>
+    <option value="enigme">Énigme</option>
+</select>
+            <button type="submit">Afficher rubrique</button>
+
+            {% if lecture_result %}
+            <div class="scroll-zone">{{ lecture_result }}</div>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
