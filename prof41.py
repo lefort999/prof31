@@ -24,7 +24,8 @@ PROFESSIONS = {
     "soldat": "soldat.txt",
     "militaire": "militaire.txt"
 }
-# 🔹 Rubriques critere
+
+# 🔹 Rubriques critère
 CARACTERISTIQUE = {
     "z": "z.txt",
     "banque": "banque.txt"
@@ -48,6 +49,7 @@ def recherche():
     if request.method == "POST":
         rubrique = request.form.get("rubrique")
         profession = request.form.get("profession")
+        caracteristique = request.form.get("caracteristique")  # ✅ ajout nécessaire
 
         if rubrique in RUBRIQUES:
             message += f"📁 Rubrique sélectionnée : {rubrique.capitalize()}\n"
@@ -55,17 +57,21 @@ def recherche():
 
         if profession in PROFESSIONS:
             message += f"\n👤 Profession sélectionnée : {profession.capitalize()}\n"
-            message += lire_texte(PROFESSIONS[profession])
-            
+            message += lire_texte(PROFESSIONS[profession]) + "\n"
+
         if caracteristique in CARACTERISTIQUE:
-            message += f"\n👤 caracteristique sélectionnée : {profession.capitalize()}\n"
+            message += f"\n🔍 Caractéristique sélectionnée : {caracteristique.capitalize()}\n"
             message += lire_texte(CARACTERISTIQUE[caracteristique])
+
     return render_template("index.html",
                            message=message,
                            rubriques=RUBRIQUES.keys(),
                            professions=PROFESSIONS.keys(),
                            caracteristique=CARACTERISTIQUE.keys())
+
 # 🔹 Lancement du serveur
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
+
+
