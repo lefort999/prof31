@@ -1,63 +1,61 @@
-import os
-from flask import Flask, request, render_template
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Explorateur de données historiques</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 2rem;
+        }
+        select, button {
+            font-size: 1rem;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+        }
+        textarea {
+            width: 100%;
+            height: 300px;
+            padding: 1rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
 
-app = Flask(__name__)
+    <h1>🧾 Recherche dans les archives</h1>
 
-# 🔹 Rubriques générales
-RUBRIQUES = {
-    "militaire": "militaire.txt",
-    "x": "x.txt",
-    "enigme": "enigme.txt",
-    "fisc": "fisc.txt",
-    "cadastre": "cadastre.txt",
-    "police": "police.txt",
-    "region": "region.txt",
-    "notaire": "notaire.txt"
-}
+    <form method="POST">
+        <label for="rubrique">Choisir une rubrique :</label><br>
+        <select name="rubrique" id="rubrique">
+            {% for r in rubriques %}
+            <option value="{{ r }}">{{ r.capitalize() }}</option>
+            {% endfor %}
+        </select><br><br>
 
-# 🔹 Professions spécifiques
-PROFESSIONS = {
-    "chanvrier": "chanvrier.txt",
-    "chapelier": "chapelier.txt",
-    "douanier": "douanier.txt",
-    "fonctionnaire": "fonctionnaire.txt",
-    "soldat": "soldat.txt",
-    "militaire": "militaire.txt"
-}
+        <label for="profession">Choisir une profession :</label><br>
+        <select name="profession" id="profession">
+            {% for p in professions %}
+            <option value="{{ p }}">{{ p.capitalize() }}</option>
+            {% endfor %}
+        </select><br><br>
 
-# 🔹 Lecture et nettoyage des fichiers texte
-def lire_texte(nom_fichier):
-    try:
-        with open(nom_fichier, "r", encoding="utf-8") as fichier:
-            lignes = fichier.read().splitlines()
-            lignes_filtrees = [ligne for ligne in lignes if not ligne.isupper()]
-            lignes_nettoyees = lignes_filtrees[3:-2] if len(lignes_filtrees) > 5 else []
-            return "\n".join(lignes_nettoyees)
-    except FileNotFoundError:
-        return "Information non disponible."
+        <button type="submit">🔍 Rechercher</button>
+    </form>
 
-# 🔹 Route principale
-@app.route("/", methods=["GET", "POST"])
-def recherche():
-    message = ""
-    if request.method == "POST":
-        rubrique = request.form.get("rubrique")
-        profession = request.form.get("profession")
+    {% if message %}
+    <h2>📜 Résultat :</h2>
+    <textarea readonly>{{ message }}</textarea>
+    {% endif %}
 
-        if rubrique in RUBRIQUES:
-            message += f"📁 Rubrique sélectionnée : {rubrique.capitalize()}\n"
-            message += lire_texte(RUBRIQUES[rubrique]) + "\n"
-
-        if profession in PROFESSIONS:
-            message += f"\n👤 Profession sélectionnée : {profession.capitalize()}\n"
-            message += lire_texte(PROFESSIONS[profession])
-
-    return render_template("index.html",
-                           message=message,
-                           rubriques=RUBRIQUES.keys(),
-                           professions=PROFESSIONS.keys())
-
-# 🔹 Lancement du serveur
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)
+</body>
+</html>
