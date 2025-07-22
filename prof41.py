@@ -26,9 +26,8 @@ PROFESSIONS = {
 }
 # 🔹 Rubriques critere
 RUBRIQUES = {
-    "y": "y.txt",
-   
-    "notaire": "notaire.txt",
+     
+    "notaire": "z.txt",
     "banque": "banque.txt"
 }
 
@@ -58,12 +57,14 @@ def recherche():
         if profession in PROFESSIONS:
             message += f"\n👤 Profession sélectionnée : {profession.capitalize()}\n"
             message += lire_texte(PROFESSIONS[profession])
-
+        if caracteristique in CARACTERISTIQUE:
+            message += f"\n👤 caracteristique sélectionnée : {profession.capitalize()}\n"
+            message += lire_texte(PROFESSIONS[profession])
     return render_template("index.html",
                            message=message,
                            rubriques=RUBRIQUES.keys(),
                            professions=PROFESSIONS.keys())
-
+                           caracteristiqye=CARACTERISTIQUE.keys())
 # 🔹 Lancement du serveur
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
