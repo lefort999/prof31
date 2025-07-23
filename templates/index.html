@@ -37,6 +37,7 @@
     <form method="POST">
         <label for="rubrique">Choisir une rubrique :</label><br>
         <select name="rubrique" id="rubrique">
+            <option value="" selected disabled>-- Sélectionner une rubrique --</option>
             {% for r in rubriques %}
             <option value="{{ r }}">{{ r.capitalize() }}</option>
             {% endfor %}
@@ -44,16 +45,20 @@
 
         <label for="profession">Choisir une profession :</label><br>
         <select name="profession" id="profession">
+            <option value="" selected disabled>-- Sélectionner une profession --</option>
             {% for p in professions %}
             <option value="{{ p }}">{{ p.capitalize() }}</option>
             {% endfor %}
         </select><br><br>
-        <label for="caracteristique">Choisir une caracteristique :</label><br>
+
+        <label for="caracteristique">Choisir une caractéristique :</label><br>
         <select name="caracteristique" id="caracteristique">
+            <option value="" selected disabled>-- Sélectionner une caractéristique --</option>
             {% for p in caracteristique %}
             <option value="{{ p }}">{{ p.capitalize() }}</option>
             {% endfor %}
         </select><br><br>
+
         <button type="submit">🔍 Rechercher</button>
     </form>
 
