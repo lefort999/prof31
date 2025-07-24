@@ -42,7 +42,7 @@ PROFESSIONS = {
     "soldat": "soldat.txt",
     "militaire": "militaire.txt",
     "pape": "pape.txt",
-    "religieux": "religieux".txt,
+    "religieux": "religieux.txt",
     "francs-tireur": "francs-tireur.txt"
 }
 
