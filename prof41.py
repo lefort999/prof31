@@ -8,7 +8,6 @@ RUBRIQUES = {
     "enigme": "enigme.txt",
     "introduction": "introduction.txt", 
     "recrutement": "recrutement.txt",
-    "introduction": "introduction.txt",
     "archives fiscales": "archives fiscales.txt",
     "cadastre": "cadastre.txt",
     "police": "police.txt",
