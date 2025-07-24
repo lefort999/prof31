@@ -14,7 +14,7 @@ RUBRIQUES = {
     "region": "region.txt",
     "archives notariales": "archives notariales.txt",
     "commune": "commune.txt", 
-    "archives banquaires" : "archives banquaires".txt",
+    "archives banquaires" : "archives banquaires.txt",
     "archives hypothequaires: "archives hypothequaires.txt,
     "archives nobilieres" : "archives nobilieres".txt",
     "objets de famille" : "objets de familles".txt",
