@@ -50,7 +50,7 @@ PROFESSIONS = {
 CARACTERISTIQUE = {
     "juif": "juif.txt",
     "catholique": "catholique.txt"
-    "protestant": "juif.txt",
+    "protestant": "protestant.txt",
     "musulman": "musulman.txt",
     "religion inconnue" : "religion inconnue.txt"
 }
