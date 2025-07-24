@@ -49,7 +49,7 @@ PROFESSIONS = {
 # 🔹 Caractéristiques critère
 CARACTERISTIQUE = {
     "juif": "juif.txt",
-    "catholique": "catholique.txt"
+    "catholique": "catholique.txt",
     "protestant": "protestant.txt",
     "musulman": "musulman.txt",
     "religion inconnue" : "religion inconnue.txt"
