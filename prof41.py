@@ -19,7 +19,7 @@ RUBRIQUES = {
     "archives nobilieres" : "archives nobilieres.txt",
     "objets de famille" : "objets de familles.txt",
     "archives hospitalieres" : "archives hospitalieres.txt",
-    "archives de l'enregistrement: "archives de l'enregistrement.txt",
+    "archives de l'enregistrement" : "archives de l'enregistrement.txt",
     "archives administratives": "archives administratives.txt", 
     "archives scolaires": "archives scolaires.txt",
     "archives judiciaires": "archives judiciaires", 
