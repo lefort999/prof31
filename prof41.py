@@ -19,7 +19,7 @@ RUBRIQUES = {
     "archives nobilieres" : "archives nobilieres.txt",
     "objets de famille" : "objets de familles.txt",
     "archives hospitalieres" : "archives hospitalieres.txt",
-    "archives de l'enregistrement: "archivres de l'enregistrement.txt",
+    "archives de l'enregistrement: "archives de l'enregistrement.txt",
     "archives administratives": "archives administratives.txt", 
     "archives scolaires": "archives scolaires.txt",
     "archives judiciaires": "archives judiciaires", 
@@ -27,7 +27,7 @@ RUBRIQUES = {
     "archives des sepultures": "archives des sepultures.txt", 
     "Alsace-Lorraine": "Alsace-Lorraine.txt",
     "archives de l'Etat Civil": "archives de l'Etat Civil.txt",
-    "Archives à l etranger": "Archives à l'etranger.txt",
+    "archives à l etranger": "archives à l'etranger.txt",
     "cadendrier revolutionnaire": "calendrier revolutionnaire.txt", 
     "sites généalogiques": "sites genealogiques.txt",
     "idee de recherches": "idees de recherches.txt" 
