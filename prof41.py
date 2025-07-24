@@ -5,14 +5,15 @@ app = Flask(__name__)
 
 # 🔹 Rubriques générales
 RUBRIQUES = {
-    "y": "y.txt",
-    "x": "x.txt",
+    "recrutement": "recrutement.txt",
+    "introductionx": "introduction.txt",
     "enigme": "enigme.txt",
     "fisc": "fisc.txt",
     "cadastre": "cadastre.txt",
     "police": "police.txt",
     "region": "region.txt",
     "notaire": "notaire.txt"
+    "banque" : "banque".txt"
 }
 
 # 🔹 Professions spécifiques
@@ -29,8 +30,11 @@ PROFESSIONS = {
 
 # 🔹 Caractéristiques critère
 CARACTERISTIQUE = {
-    "z": "z.txt",
-    "banque": "banque.txt"
+    "juif": "juif.txt",
+    "catholique": "catholique.txt"
+    "protestant": "juif.txt",
+    "musulman": "musulman.txt",
+    "religion inconnue" : "religion inconnue.txt"
 }
 
 # 🔹 Lecture et nettoyage des fichiers texte
