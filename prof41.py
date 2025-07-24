@@ -5,15 +5,33 @@ app = Flask(__name__)
 
 # 🔹 Rubriques générales
 RUBRIQUES = {
-    "recrutement": "recrutement.txt",
-    "introductionx": "introduction.txt",
     "enigme": "enigme.txt",
-    "fisc": "fisc.txt",
+    "introduction": "introduction.txt", 
+    "recrutement": "recrutement.txt",
+    "introduction": "introduction.txt",
+    "archives fiscales": "archives fiscales.txt",
     "cadastre": "cadastre.txt",
     "police": "police.txt",
     "region": "region.txt",
-    "notaire": "notaire.txt"
-    "banque" : "banque".txt"
+    "archives notariales": "archives notariales.txt",
+    "commune": "commune.txt", 
+    "archives banquaires" : "archives banquaires".txt",
+    "archives hypothequaires: "archives hypothequaires.txt,
+    "archives nobilieres" : "archives nobilieres".txt",
+    "objets de famille" : "objets de familles".txt",
+    "archives hospitalieres" : "archives hospitalieres".txt",
+    "archives de l'enregistrement: "archivres de l'enregistrement.txt",
+    "archives administratives": "archives administratives.txt", 
+    "archives scolaires": "archives scolaires.txt",
+    "archives judiciaires": "archives judiciaires", 
+    "archives religieuses": "archives religieuses.txt",
+    "archives des sepultures": "archives des sepultures.txt", 
+    "Alsace-Lorraine": "Alsace-Lorraine.txt",
+    "archives de l'Etat Civil": "archives de l'Etat Civil.txt",
+    "Archives à l etranger": "Archives à l'etranger.txt",
+    "cadendrier revolutionnaire": "calendrier revolutionnaire.txt", 
+    "sites généalogiques": "sites genealogiques.txt",
+    "idee de recherches": "idees de recherches.txt" 
 }
 
 # 🔹 Professions spécifiques
@@ -25,6 +43,7 @@ PROFESSIONS = {
     "soldat": "soldat.txt",
     "militaire": "militaire.txt",
     "pape": "pape.txt",
+    "religieux": "religieux".txt,
     "francs-tireur": "francs-tireur.txt"
 }
 
