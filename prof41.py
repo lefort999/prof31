@@ -87,8 +87,10 @@ def recherche():
         celibataire = "célibataire" in texte_rub
         etatcivil = "acte" in texte_rub
 
-        if prof == "douanier" and naissance and 1760 < naissance < 1810:
-            msg.append("📂 Douanier né entre 1760–1810 : dossier aux Archives nationales (F/12, F/14).")
+       if prof == "douanier" and date_mini and 1760 < date_mini < 1810:
+    msg.append("📂 Douanier né entre 1760–1810 : dossier aux Archives nationales (F/12, F/14).")
+        
+       
 
         if "alsace" in lieu and naissance and 1870 < naissance < 1918:
             msg.append("🇩🇪 Né en Alsace entre 1870 et 1918 : consulter ANOM ou archives allemandes.")
