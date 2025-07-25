@@ -87,6 +87,9 @@ def recherche():
         celibataire = "célibataire" in texte_rub
         etatcivil = "acte" in texte_rub
         
+        if lieu == "paris" :
+            msg.append("📂 la commune .")
+            
         if prof == "douanier" :
             msg.append("📂 Douanier né entre 1760–1810 : dossier aux Archives nationales (F/12, F/14).")
 
