@@ -25,7 +25,7 @@ RUBRIQUES = {
     "archives judiciaires": "archives judiciaires.txt", 
     "archives religieuses": "archives religieuses.txt",
     "archives des sepultures": "archives des sepultures.txt", 
-    "Alsace-Lorraine": "Alsace-Lorraine.txt",
+    "Alsace": "Alsace.txt",
     "archives de l'Etat Civil": "archives de l'Etat Civil.txt",
     "archives à l etranger": "archives à l'etranger.txt",
     "cadendrier revolutionnaire": "calendrier revolutionnaire.txt", 
