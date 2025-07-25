@@ -5,7 +5,6 @@ app = Flask(__name__)
 
 # 🔹 Rubriques générales
 RUBRIQUES = {
-    
     "enigme": "enigme.txt",
     "fisc": "fisc.txt",
     "cadastre": "cadastre.txt",
@@ -22,7 +21,8 @@ PROFESSIONS = {
     "douanier": "douanier.txt",
     "fonctionnaire": "fonctionnaire.txt",
     "soldat": "soldat.txt",
-    "militaire": "militaire.txt"
+    "militaire": "militaire.txt",
+    "orfèvre": "orfèvre.txt"  # ajouté si tu veux cette analyse
 }
 
 # 🔹 Rubriques critère
@@ -46,10 +46,22 @@ def lire_texte(nom_fichier):
 @app.route("/", methods=["GET", "POST"])
 def recherche():
     message = ""
+
     if request.method == "POST":
         rubrique = request.form.get("rubrique")
         profession = request.form.get("profession")
         caracteristique = request.form.get("caracteristique")
+        lieu = request.form.get("lieu", "").lower()
+        code_postal = request.form.get("code_postal")
+        date_min = request.form.get("date_min")
+        date_max = request.form.get("date_max")
+
+        try:
+            naissance = int(date_min) if date_min else None
+        except ValueError:
+            naissance = None
+
+        prof = profession
 
         if rubrique in RUBRIQUES:
             message += f"📁 Rubrique sélectionnée : {rubrique.capitalize()}\n"
@@ -63,6 +75,36 @@ def recherche():
             message += f"\n🔍 Caractéristique sélectionnée : {caracteristique.capitalize()}\n"
             message += lire_texte(CARACTERISTIQUE[caracteristique]) + "\n"
 
+        # 🔎 Analyse contextuelle
+        msg = []
+
+        militaire = prof == "militaire"
+        texte_prof = lire_texte(PROFESSIONS.get(prof, "")) if prof else ""
+        texte_rub = lire_texte(RUBRIQUES.get(rubrique, "")) if rubrique else ""
+
+        officier = "officier" in texte_prof
+        blesse = "blessé" in texte_prof
+        celibataire = "célibataire" in texte_rub
+        etatcivil = "acte" in texte_rub
+
+        if prof == "douanier" and naissance and 1760 < naissance < 1810:
+            msg.append("📂 Douanier né entre 1760–1810 : dossier aux Archives nationales (F/12, F/14).")
+
+        if "alsace" in lieu and naissance and 1870 < naissance < 1918:
+            msg.append("🇩🇪 Né en Alsace entre 1870 et 1918 : consulter ANOM ou archives allemandes.")
+
+        if prof == "orfèvre":
+            msg.append("💎 Orfèvre : consulter les registres de poinçons.")
+
+        if militaire and officier and blesse:
+            msg.append("🎖️ Militaire blessé/officier : consulter les registres militaires.")
+
+        if celibataire and etatcivil:
+            msg.append("📜 Célibataire avec acte complet : voir actes notariés et mentions marginales.")
+
+        if msg:
+            message += "\n" + "\n".join(msg)
+
     return render_template("index.html",
                            message=message,
                            rubriques=RUBRIQUES.keys(),
@@ -73,4 +115,3 @@ def recherche():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
-
