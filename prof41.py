@@ -25,17 +25,6 @@ PROFESSIONS = {
     "militaire": "militaire.txt"
 }
 
-
-
-
-
-
-
-
-
-
-
-
 # 🔹 Rubriques critère
 CARACTERISTIQUE = {
     "z": "z.txt",
