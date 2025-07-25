@@ -13,7 +13,7 @@ RUBRIQUES = {
     "region": "region.txt",
     "notaire": "notaire.txt",
     "Alsace": "Alsace.txt"
-}"
+}
 
 # 🔹 Professions spécifiques
 PROFESSIONS = {
