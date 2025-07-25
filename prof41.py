@@ -88,7 +88,7 @@ def recherche():
         etatcivil = "acte" in texte_rub
 
        if prof == "douanier" and date_mini and 1760 < date_mini < 1810:
-    msg.append("📂 Douanier né entre 1760–1810 : dossier aux Archives nationales (F/12, F/14).")
+            msg.append("📂 Douanier né entre 1760–1810 : dossier aux Archives nationales (F/12, F/14).")
         
        
 
