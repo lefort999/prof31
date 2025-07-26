@@ -22,7 +22,7 @@ PROFESSIONS = {
     "fonctionnaire": "fonctionnaire.txt",
     "soldat": "soldat.txt",
     "militaire": "militaire.txt",
-    "orfèvre": "orfèvre.txt"  # ajouté si tu veux cette analyse
+    "orfèvre": "orfèvre.txt"
 }
 
 # 🔹 Rubriques critère
@@ -40,74 +40,76 @@ def lire_texte(nom_fichier):
             lignes_nettoyees = lignes_filtrees[3:-2] if len(lignes_filtrees) > 5 else []
             return "\n".join(lignes_nettoyees)
     except FileNotFoundError:
-        return "Information non disponible."
+        return "❌ Fichier non trouvé."
 
-# 🔹 Route principale
 @app.route("/", methods=["GET", "POST"])
 def recherche():
     message = ""
 
-    if request.method == "POST":
-        rubrique = request.form.get("rubrique")
-        profession = request.form.get("profession")
-        caracteristique = request.form.get("caracteristique")
-        lieu = request.form.get("lieu", "").lower()
-        code_postal = request.form.get("code_postal")
-        date_min = request.form.get("date_min")
-        date_max = request.form.get("date_max")
+    try:
+        if request.method == "POST":
+            rubrique = request.form.get("rubrique")
+            profession = request.form.get("profession")
+            caracteristique = request.form.get("caracteristique")
+            lieu = request.form.get("lieu", "").lower()
+            code_postal = request.form.get("code_postal", "")
+            date_min = request.form.get("date_min")
+            circonstance = request.form.get("circonstance", "").lower()
 
-        try:
-            naissance = int(date_min) if date_min else None
-        except ValueError:
             naissance = None
+            try:
+                naissance = int(date_min) if date_min else None
+            except ValueError:
+                pass  # Si la date est incorrecte, on ignore
 
-        prof = profession
+            # ▶ Ajout des résultats
+            if rubrique in RUBRIQUES:
+                message += f"📁 Rubrique sélectionnée : {rubrique.capitalize()}\n"
+                message += lire_texte(RUBRIQUES[rubrique]) + "\n"
 
-        if rubrique in RUBRIQUES:
-            message += f"📁 Rubrique sélectionnée : {rubrique.capitalize()}\n"
-            message += lire_texte(RUBRIQUES[rubrique]) + "\n"
+            if profession in PROFESSIONS:
+                message += f"\n👤 Profession sélectionnée : {profession.capitalize()}\n"
+                message += lire_texte(PROFESSIONS[profession]) + "\n"
 
-        if profession in PROFESSIONS:
-            message += f"\n👤 Profession sélectionnée : {profession.capitalize()}\n"
-            message += lire_texte(PROFESSIONS[profession]) + "\n"
+            if caracteristique in CARACTERISTIQUE:
+                message += f"\n🔍 Caractéristique sélectionnée : {caracteristique.capitalize()}\n"
+                message += lire_texte(CARACTERISTIQUE[caracteristique]) + "\n"
 
-        if caracteristique in CARACTERISTIQUE:
-            message += f"\n🔍 Caractéristique sélectionnée : {caracteristique.capitalize()}\n"
-            message += lire_texte(CARACTERISTIQUE[caracteristique]) + "\n"
+            # ▶ Analyse contextuelle
+            msg = []
 
-        # 🔎 Analyse contextuelle
-        msg = []
+            militaire = profession == "militaire"
+            texte_prof = lire_texte(PROFESSIONS.get(profession, "")) if profession else ""
+            texte_rub = lire_texte(RUBRIQUES.get(rubrique, "")) if rubrique else ""
 
-        militaire = prof == "militaire"
-        texte_prof = lire_texte(PROFESSIONS.get(prof, "")) if prof else ""
-        texte_rub = lire_texte(RUBRIQUES.get(rubrique, "")) if rubrique else ""
+            officier = "officier" in texte_prof
+            blesse = "blessé" in texte_prof
+            celibataire = "célibataire" in texte_rub
+            etatcivil = "acte" in texte_rub
 
-        officier = "officier" in texte_prof
-        blesse = "blessé" in texte_prof
-        celibataire = "célibataire" in texte_rub
-        etatcivil = "acte" in texte_rub
-        
-        if prof == "douanier" :
-            msg.append("📂 Douanier né entre 1760–1810 : dossier aux Archives nationales (F/12, F/14).")
+            if profession == "douanier":
+                msg.append("📂 Douanier né entre 1760–1810 : dossier aux Archives nationales (F/12, F/14).")
 
-        
-        if "alsace" :
-            msg.append("🇩🇪 Né en Alsace entre 1870 et 1918 : consulter ANOM ou archives allemandes.")
+            if rubrique == "Alsace":
+                msg.append("🇩🇪 Né en Alsace entre 1870 et 1918 : consulter ANOM ou archives allemandes.")
 
-        if prof == "orfèvre":
-            msg.append("💎 Orfèvre : consulter les registres de poinçons.")
+            if profession == "orfèvre":
+                msg.append("💎 Orfèvre : consulter les registres de poinçons.")
 
-        if circonstance == "inondation":
-            msg.append("💎 En 1910 Paris sous les eaux.")
+            if circonstance == "inondation":
+                msg.append("🌊 En 1910 Paris sous les eaux.")
 
-        if militaire :
-            msg.append("🎖️ Militaire blessé/officier : consulter les registres militaires.")
+            if militaire and (blesse or officier):
+                msg.append("🎖️ Militaire blessé/officier : consulter les registres militaires.")
 
-        if celibataire :
-            msg.append("📜 Célibataire avec acte complet : voir actes notariés et mentions marginales.")
+            if celibataire and etatcivil:
+                msg.append("📜 Célibataire avec acte complet : voir actes notariés et mentions marginales.")
 
-        if msg:
-            message += "\n" + "\n".join(msg)
+            if msg:
+                message += "\n🔎 Analyse complémentaire :\n" + "\n".join(msg)
+
+    except Exception as e:
+        message = f"🚨 Une erreur s'est produite : {str(e)}"
 
     return render_template("index.html",
                            message=message,
@@ -115,7 +117,6 @@ def recherche():
                            professions=PROFESSIONS.keys(),
                            caracteristique=CARACTERISTIQUE.keys())
 
-# 🔹 Lancement du serveur
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
