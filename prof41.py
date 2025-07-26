@@ -97,7 +97,7 @@ def recherche():
         if "alsace" in lieu and naissance and 1870 < naissance < 1918:
             msg.append("🇩🇪 Né en Alsace entre 1870 et 1918 : consulter ANOM ou archives allemandes.")
 
-        if prof == "orfèvre":
+        if prof == "orfèvre" and lieu == "Paris" :
             msg.append("💎 Orfèvre : consulter les registres de poinçons.")
 
         if militaire and officier and blesse:
