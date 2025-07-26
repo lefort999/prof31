@@ -97,6 +97,9 @@ def recherche():
         if prof == "orfèvre":
             msg.append("💎 Orfèvre : consulter les registres de poinçons.")
 
+        if circonstance == "inondation":
+            msg.append("💎 En 1910 Paris sous les eaux.")
+
         if militaire and officier and blesse:
             msg.append("🎖️ Militaire blessé/officier : consulter les registres militaires.")
 
