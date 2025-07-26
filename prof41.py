@@ -93,6 +93,10 @@ def recherche():
         if prof == "douanier" :
             msg.append("📂 Douanier né entre 1760–1810 : dossier aux Archives nationales (F/12, F/14).")
 
+         if circonstance == "inondation" :
+            msg.append("📂 1910 Paris est sous les eaux .") 
+        
+
         if circonstance == "inondation" :
             msg.append("📂 Paris sous les eaux en 1910 .")
 
