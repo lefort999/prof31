@@ -94,10 +94,10 @@ def recherche():
                 msg.append("🇩🇪 Né en Alsace entre 1870 et 1918 : consulter ANOM ou archives allemandes.")
 
             if profession == "orfèvre":
-               if lieu.lower() == "paris":
-               msg.append("💎 Orfèvre parisien : consulter les registres de poinçons de la capitale.")
+                if lieu.lower() == "paris":
+                msg.append("💎 Orfèvre parisien : consulter les registres de poinçons de la capitale.")
     else:
-              msg.append("💎 Orfèvre en province : consulter les registres de poinçons régionaux, ils sont différents de ceux de Paris.")
+                msg.append("💎 Orfèvre en province : consulter les registres de poinçons régionaux, ils sont différents de ceux de Paris.")
 
             if circonstance == "inondation":
                 msg.append("🌊 En 1910 Paris sous les eaux.")
