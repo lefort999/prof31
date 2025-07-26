@@ -87,11 +87,11 @@ def recherche():
         celibataire = "célibataire" in texte_rub
         etatcivil = "acte" in texte_rub
         
-        if prof == "douanier" and date_mini and 1760 < date_mini < 1810:
+        if prof == "douanier" :
             msg.append("📂 Douanier né entre 1760–1810 : dossier aux Archives nationales (F/12, F/14).")
 
         
-        if "alsace" in lieu and naissance and 1870 < naissance < 1918:
+        if "alsace" :
             msg.append("🇩🇪 Né en Alsace entre 1870 et 1918 : consulter ANOM ou archives allemandes.")
 
         if prof == "orfèvre":
@@ -100,10 +100,10 @@ def recherche():
         if circonstance == "inondation":
             msg.append("💎 En 1910 Paris sous les eaux.")
 
-        if militaire and officier and blesse:
+        if militaire :
             msg.append("🎖️ Militaire blessé/officier : consulter les registres militaires.")
 
-        if celibataire and etatcivil:
+        if celibataire :
             msg.append("📜 Célibataire avec acte complet : voir actes notariés et mentions marginales.")
 
         if msg:
