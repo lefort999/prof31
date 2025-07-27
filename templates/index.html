@@ -1,158 +1,67 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Explorateur de données historiques</title>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Messagerie deux colonnes</title>
   <style>
-    html, body {
-      height: 100%;
+    body {
       margin: 0;
       padding: 0;
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fefefe;
+      font-family: Arial, sans-serif;
       display: flex;
-      flex-direction: column;
+      height: 100vh;
+      background-color: #f0f0f0;
     }
 
-    .container {
+    .left-panel {
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      max-width: 800px;
-      margin: auto;
+      background-color: #e3ffe0;
       padding: 1rem;
-      box-sizing: border-box;
+      overflow-y: auto;
+      box-shadow: inset -1px 0 0 rgba(0,0,0,0.1);
     }
 
-    h1 {
-      font-size: 1.8rem;
-      color: #374785;
-      margin-bottom: 1rem;
-    }
-
-    form {
+    .right-panel {
+      flex: 1.5;
       display: flex;
       flex-direction: column;
-      gap: 0.8rem;
+      padding: 1rem;
+      background-color: #fff;
     }
 
-    label {
-      font-weight: bold;
-      color: #444;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 0.5rem;
-      font-size: 1rem;
-      border: 1px solid #bbb;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-
-    button {
-      padding: 0.6rem 1rem;
-      font-size: 1rem;
-      background-color: #374785;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-top: 0.5rem;
-      align-self: flex-start;
-    }
-
-    h2 {
-      margin-top: 2rem;
-      color: #222;
-    }
-
-    .message-box {
-      margin-top: 1rem;
-      display: flex;
-      flex-direction: column;
-      width: 100%; /* ✅ Correction ajoutée */
+    .message {
+      background-color: #b2f0c0;
+      padding: 0.75rem;
+      margin-bottom: 0.5rem;
+      border-radius: 8px;
     }
 
     textarea {
-      width: 100%;         /* ✅ Correction ajoutée */
-      height: 300px;
+      width: 100%;
+      height: 150px;
       resize: vertical;
       padding: 1rem;
       font-size: 1rem;
-      font-family: 'Literata', serif;
-      background-color: #fff7e6;
-      border: 1px solid #bbb;
-      color: #333;
-      line-height: 1.4;
       box-sizing: border-box;
+      margin-top: auto;
+      border: 1px solid #bbb;
+      border-radius: 6px;
+      background-color: #fff7e6;
+      color: #333;
     }
   </style>
-
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>🧾 Recherche dans les archives</h1>
-
-    <form method="POST">
-      <label for="rubrique">Choisir une rubrique :</label>
-      <select name="rubrique" id="rubrique">
-        <option value="none">Aucune</option>
-        {% for r in rubriques %}
-        <option value="{{ r }}">{{ r.capitalize() }}</option>
-        {% endfor %}
-      </select>
-
-      <label for="profession">Choisir une profession :</label>
-      <select name="profession" id="profession">
-        <option value="none">Aucune</option>
-        {% for p in professions %}
-        <option value="{{ p }}">{{ p.capitalize() }}</option>
-        {% endfor %}
-      </select>
-
-      <label for="caracteristique">Choisir une caractéristique :</label>
-      <select name="caracteristique" id="caracteristique">
-        <option value="none">Aucune</option>
-        {% for c in caracteristique %}
-        <option value="{{ c }}">{{ c.capitalize() }}</option>
-        {% endfor %}
-      </select>
-
-      <label for="lieu">Lieu :</label>
-      <input type="text" id="lieu" name="lieu">
-
-      <label for="code_postal">Code postal :</label>
-      <input type="text" id="code_postal" name="code_postal">
-
-      <label for="date_min">Date :</label>
-      <input type="number" id="date_min" name="date_min">
-
-      <label for="circonstance">Circonstance :</label>
-      <input type="text" id="circonstance" name="circonstance">
-
-      <button type="submit">🔍 Rechercher</button>
-    </form>
-
-    {% if message %}
-    <div class="message-box">
-      <h2>📜 Résultat :</h2>
-      <textarea readonly>{{ message }}</textarea>
-    </div>
-    {% endif %}
+  <div class="left-panel">
+    <div class="message">👤 Salut Jacques, tout va bien ici !</div>
+    <div class="message">👤 On teste la mise en page demain ?</div>
+    <!-- D'autres messages reçus -->
   </div>
 
-  <script>
-    window.onload = function() {
-      $('#rubrique').select2({ width: '100%' });
-      $('#profession').select2({ width: '100%' });
-      $('#caracteristique').select2({ width: '100%' });
-    };
-  </script>
+  <div class="right-panel">
+    <textarea placeholder="Tape ton message ici..."></textarea>
+  </div>
 </body>
+</html>
+Ce code :
