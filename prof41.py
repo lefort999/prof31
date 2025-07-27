@@ -12,7 +12,7 @@ RUBRIQUES = {
     "region": "region.txt",
     "notaire": "notaire.txt",
     "Alsace": "Alsace.txt",
-    "essai": "essai.txt
+    "essai": "essai.txt"
 }
 
 # 🔹 Professions spécifiques
