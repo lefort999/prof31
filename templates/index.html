@@ -51,6 +51,7 @@
       font-size: 1rem;
       border: 1px solid #bbb;
       border-radius: 4px;
+      box-sizing: border-box;
     }
 
     button {
@@ -74,11 +75,11 @@
       margin-top: 1rem;
       display: flex;
       flex-direction: column;
-      flex-grow: 1;
+      width: 100%; /* ✅ Correction ajoutée */
     }
 
     textarea {
-      flex-grow: 1;
+      width: 100%;         /* ✅ Correction ajoutée */
       height: 300px;
       resize: vertical;
       padding: 1rem;
@@ -88,6 +89,7 @@
       border: 1px solid #bbb;
       color: #333;
       line-height: 1.4;
+      box-sizing: border-box;
     }
   </style>
 
@@ -154,4 +156,3 @@
     };
   </script>
 </body>
-</html>
