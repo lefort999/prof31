@@ -1,86 +1,98 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Explorateur de données historiques</title>
-    <style>
-        body {
-            font-family: monotype corsiva;
-            margin: 2rem;
-            background-color: #f8f9fa;
-        }
-        h1 {
-            color: #333;
-        }
-        form {
-            margin-bottom: 2rem;
-        }
-        label {
-            font-weight: bold;
-        }
-        select, input, button {
-            font-size: 1.5rem;
-            padding: 0.5rem;
-            margin: 0.3rem 0 1rem 0;
-        }
-        textarea {
-            width: 100%;
-            height: 300px;
-            padding: 1rem;
-            font-size: 1.5rem;
-            border: 1px solid #ccc;
-            resize: vertical;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Explorateur de données historiques</title>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background-color: #f8f9fa;
+    }
+    h1 {
+      color: #333;
+    }
+    form {
+      margin-bottom: 2rem;
+    }
+    label {
+      font-weight: bold;
+    }
+    select, input, button {
+      font-size: 1.2rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+      padding: 1rem;
+      font-size: 1.2rem;
+      border: 1px solid #ccc;
+      resize: vertical;
+    }
+  </style>
 </head>
 <body>
 
-    <h1>🧾 Recherche dans les archives</h1>
+  <h1>🧾 Recherche dans les archives</h1>
 
-    <form method="POST">
-        <label for="rubrique">Choisir une rubrique :</label><br>
-        <select name="rubrique" id="rubrique">
-            <option value="" selected disabled>-- Sélectionner une rubrique --</option>
-            {% for r in rubriques %}
-            <option value="{{ r }}">{{ r.capitalize() }}</option>
-            {% endfor %}
-        </select><br>
+  <form method="POST">
+    <label for="rubrique">Choisir une rubrique :</label>
+    <select name="rubrique" id="rubrique">
+      <option value="none">Aucune</option>
+      {% for r in rubriques %}
+      <option value="{{ r }}">{{ r.capitalize() }}</option>
+      {% endfor %}
+    </select>
 
-        <label for="profession">Choisir une profession :</label><br>
-        <select name="profession" id="profession">
-            <option value="" selected disabled>-- Sélectionner une profession --</option>
-            {% for p in professions %}
-            <option value="{{ p }}">{{ p.capitalize() }}</option>
-            {% endfor %}
-        </select><br>
+    <label for="profession">Choisir une profession :</label>
+    <select name="profession" id="profession">
+      <option value="none">Aucune</option>
+      {% for p in professions %}
+      <option value="{{ p }}">{{ p.capitalize() }}</option>
+      {% endfor %}
+    </select>
 
-        <label for="caracteristique">Choisir une caractéristique :</label><br>
-        <select name="caracteristique" id="caracteristique">
-            <option value="" selected disabled>-- Sélectionner une caractéristique --</option>
-            {% for c in caracteristique %}
-            <option value="{{ c }}">{{ c.capitalize() }}</option>
-            {% endfor %}
-        </select><br>
+    <label for="caracteristique">Choisir une caractéristique :</label>
+    <select name="caracteristique" id="caracteristique">
+      <option value="none">Aucune</option>
+      {% for c in caracteristique %}
+      <option value="{{ c }}">{{ c.capitalize() }}</option>
+      {% endfor %}
+    </select>
 
-        <label for="lieu">Lieu :</label><br>
-        <input type="text" id="lieu" name="lieu"><br>
+    <label for="lieu">Lieu :</label>
+    <input type="text" id="lieu" name="lieu">
 
-        <label for="code_postal">Code postal :</label><br>
-        <input type="text" id="code_postal" name="code_postal"><br>
+    <label for="code_postal">Code postal :</label>
+    <input type="text" id="code_postal" name="code_postal">
 
-        <label for="date_min">Date :</label><br>
-        <input type="number" id="date" name="date"><br>
+    <label for="date_min">Date :</label>
+    <input type="number" id="date_min" name="date_min">
 
-        <label for="circonstance">circonstance :</label><br>
-        <input type="text" id="circonstance" name="circonstance"><br>
+    <label for="circonstance">Circonstance :</label>
+    <input type="text" id="circonstance" name="circonstance">
 
-        <button type="submit">🔍 Rechercher</button>
-    </form>
+    <button type="submit">🔍 Rechercher</button>
+  </form>
 
-    {% if message %}
-    <h2>📜 Résultat :</h2>
-    <textarea readonly>{{ message }}</textarea>
-    {% endif %}
+  {% if message %}
+  <h2>📜 Résultat :</h2>
+  <textarea readonly>{{ message }}</textarea>
+  {% endif %}
+
+  <script>
+    $(document).ready(function() {
+      $('#rubrique').select2({ width: '100%' });
+      $('#profession').select2({ width: '100%' });
+      $('#caracteristique').select2({ width: '100%' });
+    });
+  </script>
 
 </body>
 </html>
