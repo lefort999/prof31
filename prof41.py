@@ -11,8 +11,7 @@ RUBRIQUES = {
     "police": "police.txt",
     "region": "region.txt",
     "notaire": "notaire.txt",
-    "Alsace": "Alsace.txt",
-    "essai": "essai.txt"
+    "Alsace": "Alsace.txt"
 }
 
 # 🔹 Professions spécifiques
