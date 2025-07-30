@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Messagerie deux colonnes</title>
-
-  ###### Début CSS personnalisé ######
   <style>
     body {
       margin: 0;
@@ -22,9 +20,6 @@
       padding: 1rem;
       overflow-y: auto;
       box-shadow: inset -1px 0 0 rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
     }
 
     .right-panel {
@@ -35,31 +30,10 @@
       background-color: #fff;
     }
 
-    .severin-block {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .severin-block img {
-      max-width: 80%;
-      border: 2px solid #888;
-      border-radius: 12px;
-      transition: transform 0.3s ease;
-    }
-
-    .severin-block img:hover {
-      transform: scale(1.03);
-    }
-
-    .message-block {
-      width: 85%;
-      margin-left: auto;
-      margin-top: 1rem;
-    }
-
     .message {
       background-color: #b2f0c0;
       padding: 0.75rem;
+      margin-bottom: 0.5rem;
       border-radius: 8px;
       white-space: pre-wrap;
     }
@@ -87,20 +61,55 @@
       cursor: pointer;
     }
   </style>
-  ###### Fin CSS personnalisé ######
 </head>
 <body>
 
   <div class="left-panel">
-
-    
-    
+    {% if message %}
+      <div class="message">{{ message }}</div>
+    {% endif %}
   </div>
 
   <div class="right-panel">
     <form method="POST">
-      <!-- formulaire inchangé -->
-      <!-- ... -->
+
+      <label for="rubrique">Rubrique :</label>
+      <select name="rubrique" id="rubrique">
+        <option value="">-- Choisir une rubrique --</option>
+        {% for r in rubriques %}
+          <option value="{{ r }}">{{ r }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="profession">Profession :</label>
+      <select name="profession" id="profession">
+        <option value="">-- Choisir une profession --</option>
+        {% for p in professions %}
+          <option value="{{ p }}">{{ p }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="caracteristique">Caractéristique :</label>
+      <select name="caracteristique" id="caracteristique">
+        <option value="">-- Choisir une caractéristique --</option>
+        {% for c in caracteristique %}
+          <option value="{{ c }}">{{ c }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="lieu">Lieu :</label>
+      <input type="text" name="lieu" id="lieu" placeholder="Ex: Paris" />
+
+      <label for="code_postal">Code postal :</label>
+      <input type="text" name="code_postal" id="code_postal" placeholder="75000" />
+
+      <label for="date_min">Date de naissance (approximative) :</label>
+      <input type="text" name="date_min" id="date_min" placeholder="Ex: 1882" />
+
+      <label for="circonstance">Circonstance :</label>
+      <textarea name="circonstance" id="circonstance" placeholder="Tape ici ta circonstance..."></textarea>
+
+      <button type="submit">Envoyer</button>
     </form>
   </div>
 
