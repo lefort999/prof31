@@ -67,17 +67,23 @@
   <div class="left-panel">
 
 #### Début insertion Séverin ####
-<img src="{{ url_for('static', filename='severin.jpg') }}"
-     alt="Séverin"
-     style="max-width: 100%; border: 2px solid #888; border-radius: 12px; margin-bottom: 1rem;" />
+#### Début bloc Séverin ####
+  <div style="text-align: center; margin-bottom: 1rem;">
+    <img src="{{ url_for('static', filename='severin.jpg') }}"
+         alt="Portrait de Séverin"
+         style="max-width: 100%; border: 2px solid #888; border-radius: 12px;" />
+    <p style="font-weight: bold; margin-top: 0.5rem;">Portrait de Séverin</p>
+  </div>
+  #### Fin bloc Séverin ####
+
+  {% if message %}
+    #### Début bloc message ####
+    <div class="message">{{ message }}</div>
+    #### Fin bloc message ####
+  {% endif %}
 #### Fin insertion Séverin ####
-
-
-
-    
-    {% if message %}
-      <div class="message">{{ message }}</div>
-    {% endif %}
+   
+   
   </div>
 
   <div class="right-panel">
