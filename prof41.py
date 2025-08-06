@@ -102,6 +102,9 @@ def recherche():
             if circonstance == "inondation":
                 msg.append("🌊 En 1910 Paris sous les eaux.")
 
+            if circonstance == "commune":
+                msg.append("🌊 En 1871 Paris Paris est au main des insurgés l'htel de ville brukle et les archives avec sous les eaux.")
+
             if militaire and (blesse or officier):
                 msg.append("🎖️ Militaire blessé/officier : consulter les registres militaires.")
 
@@ -123,3 +126,4 @@ def recherche():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
+
